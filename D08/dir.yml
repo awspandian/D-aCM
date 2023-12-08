@@ -1,0 +1,24 @@
+## Create Directory, rename and delete DIRECTORY
+---
+- name: Manage directories on remote host
+  hosts: dev
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Create a directory
+      file:
+        path: /opt/Test_dir
+        state: directory
+      # Create a directory on the remote host
+
+    - name: Rename the directory
+      command: mv /opt/Test_dir /opt/re_dir
+      # Rename the directory by executing the 'mv' command
+
+#    - name: Delete the directory
+#      file:
+#        path: /opt/re_dir
+#        state: absent
+      # Delete the renamed directory on the remote host
+

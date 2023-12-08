@@ -1,0 +1,19 @@
+---
+- hosts: dev
+  become: true
+  tasks:
+   - name: Install Httpd
+     ansible.builtin.yum:
+      name: httpd
+      state: present
+   - name: Copy index.html
+     ansible.builtin.copy:        
+       src: "{{ item }}"
+       dest: /var/www/html/
+     with_fileglob:
+       - "/home/ansible/car/*"
+   - name: Start Httpd Server
+     ansible.builtin.service:
+       name: httpd
+       state: started
+

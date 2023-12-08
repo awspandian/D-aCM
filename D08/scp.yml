@@ -1,0 +1,25 @@
+---
+- hosts: dev
+  become: true
+  tasks:
+   - name: Install Httpd
+     ansible.builtin.yum:
+      name: httpd
+      state: present
+   - name: Copy index.html
+     ansible.builtin.copy:        
+       src: car 
+       dest: /var/www/html/
+   - name: Start Httpd Server
+     ansible.builtin.service:
+       name: httpd
+       state: started
+   - name: Copy Shell Script
+     ansible.builtin.copy:
+       src: 1.sh
+       dest: /var/www/html/
+       mode: 0755
+   - name: Run shell script on remote server
+     ansible.builtin.shell: "/var/www/html/1.sh" 
+
+

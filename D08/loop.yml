@@ -1,0 +1,39 @@
+## using Loop concetp using with_items
+---
+- name: Install Multiple Software Packages
+  hosts: dev
+  gather_facts: false
+  become: true
+
+  vars:
+    software_packages:
+      - name: wget
+        state: present
+      - name: git
+        state: present
+      - name: tree
+        state: present
+      - name: vim
+        state: present
+
+  tasks:
+    - name: Install software packages
+      package:
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+      with_items: "{{ software_packages }}"
+      # Use the with_items concept to iterate over the software_packages variable
+
+    - name: Verify package installation
+      command: "{{ item.name }} --version"
+      register: command_output
+      with_items: "{{ software_packages }}"
+      # Verify the package installation by running the command with --version flag
+
+    - name: Display package versions
+      debug:
+        var: item.stdout
+      with_items: "{{ command_output.results }}"
+      # Print the stdout of the previous task, which contains the package versions
+
+
