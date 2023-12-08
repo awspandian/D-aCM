@@ -1,0 +1,109 @@
+## https://github.com/awspandian/ansible_ref.git
+
+---
+# YAML documents begin with the document separator ---
+
+# The minus in YAML this indicates a list item.  The playbook contains a list 
+# of plays, with each play being a dictionary
+-
+
+  # Target: where our play will run and options it will run with
+
+  # Variable: variables that will apply to the play, on all target systems
+
+  # Task: the list of tasks that will be executed within the play, this section
+  # can also be used for pre and post tasks
+
+  # Handlers: handlers that are executed as a notify key from a task
+
+  # Roles: list of roles to be imported into the play
+
+# Three dots indicate the end of a YAML document
+#
+We can make use of this language to store data and configuration in a human-readable format.
+	YAML files will have .yml as an extension
+	Official Website:  https://yaml.org/
+
+Sample YML File Data
+Fruit: Apple
+Vegetable: Carrot
+Liquid: Water
+Meet: Chicken
+
+Array/List
+Fruits:
+ - Orange
+ - Apple
+ - Banana
+ - Guava
+
+Vegetables:
+ - Carrot
+ - Cauliflower
+ - Tomoto
+
+Here - dash indicate the element of any array.
+name: Sam
+age: 40
+phno: 9876543210
+email: sam@gmail.com
+hobbies:
+  - reading books
+  - music
+# person data in yml
+person:
+  id: 200
+  name: sam
+  email: sam@gmail.com
+  address:
+    city: chennai
+    state: TN
+    country: India
+  job:
+    companyName: Hippo
+    role: IT Manager
+    pkg: 40 LPA
+  hobbies:
+    - story
+    - music
+    - cycling
+
+# using --- hypens to seperate the data
+---
+person:
+  id: 200
+  name: sam
+  email: sam@gmail.com
+  address:
+    city: chennai
+    state: TN
+    country: India
+  job:
+    companyName: hippo
+    role: IT Manager
+    pkg: 40 LPA
+  hobbies:
+    - story
+    - music
+    - cycling
+---
+movie:
+  name: Good Night
+  hero: Manikandan
+  heroine: Meetha
+  director: Vinayak Chandrasekaran
+  budget: 4cr
+...
+
+PLAYBOOKS
+1.	Playbook is a single YAML file, containing one or more plays in a list.
+2.	Plays are ordered sets of tasks to execute against host servers from your inventory file.
+3.	Play defines a set of activities (tasks) to run on managed nodes.
+4.	Task is an action to be performed on the managed node
+
+Examples are:
+ a) Execute a command
+ b) Run a shell script
+ c) Install a package
+ d) Shutdown / Restart the hosts
+
