@@ -1,0 +1,5 @@
+---
+- hosts: test 
+  roles:
+    - role: 'roles/tomcat'
+      become: yes

@@ -1,0 +1,19 @@
+---
+- name: Install Php On ubuntu Server's
+  become: yes
+  hosts: test
+  tasks:
+    - name: install apache and php package
+      ansible.builtin.apt:
+        name:
+          - apache2
+          - php 
+          - libapache2-mod-php 
+          - php-mysql
+        update_cache: yes
+        state: absent
+    - name: copy php file
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/html/info.php
+    
